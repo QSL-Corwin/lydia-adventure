@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lydia Scout Corwin</title>
+    <!-- Importing a fun, playful font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* This sets up the pink background and the overall layout */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffc0cb; /* Classic pink background */
+            /* Adding a subtle, darker pink polka dot pattern */
+            background-image: radial-gradient(#ff8da1 15%, transparent 16%), radial-gradient(#ff8da1 15%, transparent 16%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            font-family: 'Fredoka', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden; /* Keeps the flowers from creating scrollbars */
+        }
+
+        /* The white box that holds the text and picture */
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            max-width: 500px;
+            width: 85%;
+            z-index: 10; /* Keeps the card above the flowers */
+            position: relative;
+        }
+
+        /* Styling for Lydia's name */
+        h1 {
+            color: #d81b60; /* Dark pink/magenta */
+            font-size: 2.8em;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #ffd1dc;
+        }
+
+        /* Styling for the picture */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            border: 8px solid white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            /* This rotates the picture slightly for a fun, scrapbook feel */
+            transform: rotate(-2deg); 
+            transition: transform 0.3s ease;
+        }
+
+        /* Makes the picture interactive - it straightens when hovered over! */
+        img:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        /* Styling for the phrase below the picture */
+        h2 {
+            color: #ff4081; /* Bright pink */
+            font-size: 2em;
+            margin-top: 25px;
+            margin-bottom: 0;
+            letter-spacing: 1px;
+        }
+
+        /* --- Animations for the background flowers --- */
+        .flower {
+            position: absolute;
+            font-size: 40px;
+            user-select: none; /* Prevents text highlighting */
+            z-index: 1;
+            /* This makes them float up and down endlessly */
+            animation: float 6s ease-in-out infinite; 
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(20deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Placing the individual flowers around the screen */
+        .f1 { top: 10%; left: 8%; font-size: 50px; animation-delay: 0s; }
+        .f2 { top: 15%; right: 12%; font-size: 60px; animation-delay: 1s; }
+        .f3 { bottom: 10%; left: 15%; font-size: 45px; animation-delay: 2s; }
+        .f4 { bottom: 15%; right: 10%; font-size: 55px; animation-delay: 0.5s; }
+        .f5 { top: 45%; left: 3%; font-size: 35px; animation-delay: 1.5s; }
+        .f6 { top: 50%; right: 4%; font-size: 40px; animation-delay: 2.5s; }
+        .f7 { top: 5%; left: 50%; font-size: 30px; animation-delay: 0.8s; }
+        .f8 { bottom: 5%; right: 50%; font-size: 30px; animation-delay: 1.8s; }
+    </style>
+</head>
+<body>
+
+    <!-- Background Flowers -->
+    <div class="flower f1">🌸</div>
+    <div class="flower f2">🌺</div>
+    <div class="flower f3">🌼</div>
+    <div class="flower f4">🌸</div>
+    <div class="flower f5">🌻</div>
+    <div class="flower f6">🌷</div>
+    <div class="flower f7">🌺</div>
+    <div class="flower f8">🌼</div>
+
+    <!-- The Main Content Card -->
+    <div class="card">
+        <h1>Lydia Scout Corwin</h1>
+        
+        <!-- The image source matches the exact name of the file you uploaded -->
+        <img src="IMG_9529.jpg" alt="Lydia Scout Corwin ready for adventure!">
+        
+        <h2>Full of Adventure!</h2>
+    </div>
+
+</body>
+</html>
