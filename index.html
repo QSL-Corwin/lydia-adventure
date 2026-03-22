@@ -19,6 +19,8 @@
             background-position: 0 0, 15px 15px;
             font-family: 'Fredoka', sans-serif;
             display: flex;
+            flex-direction: column; /* NEW: Stacks multiple cards vertically */
+            align-items: center; /* NEW: Centers the cards */
             min-height: 100vh;
             text-align: center;
             overflow-x: hidden; /* Hide sideways scrolling, but allow scrolling down! */
@@ -62,6 +64,11 @@
         /* Makes the picture interactive - it straightens when hovered over! */
         img:hover {
             transform: rotate(0deg) scale(1.02);
+        }
+
+        /* --- NEW: Styling for the artwork rotation fade effect --- */
+        #myArt {
+            transition: opacity 0.5s ease-in-out, transform 0.3s ease;
         }
 
         /* --- NEW: Styling for the photo swiper container and buttons --- */
@@ -182,6 +189,18 @@
         <h2>Full of Adventure!</h2>
     </div>
 
+    <!-- NEW: The Artwork Card -->
+    <div class="card">
+        <h1>My Artwork 🎨</h1>
+        
+        <!-- We use the same photo-container to keep the spacing neat -->
+        <div class="photo-container">
+            <img id="myArt" src="IMG_0378.jpg" alt="Lydia's beautiful artwork">
+        </div>
+        
+        <h2>A Rotating Gallery!</h2>
+    </div>
+
     <!-- NEW: JavaScript to make the buttons work! -->
     <script>
         // This is a "List" (an Array) of your pictures.
@@ -214,6 +233,40 @@
             }
             photoElement.src = myPhotos[photoIndex];
         }
+
+        // --- NEW: Artwork Rotating Logic ---
+        const artPhotos = [
+            "IMG_0378.jpg",
+            "IMG_0129.jpg",
+            "IMG_0070.jpg",
+            "IMG_0379.jpg",
+            "IMG_0383.jpg",
+            "IMG_0384.jpg"
+        ];
+        
+        let artIndex = 0;
+        const artElement = document.getElementById("myArt");
+
+        // This timer makes the artwork change all by itself every 3.5 seconds!
+        setInterval(() => {
+            // First, smoothly fade the picture out until it's invisible (opacity: 0)
+            artElement.style.opacity = 0;
+            
+            // Wait just a tiny bit for the fade out, then swap the picture
+            setTimeout(() => {
+                artIndex = artIndex + 1;
+                // Loop back to the very first drawing if we run out
+                if (artIndex >= artPhotos.length) {
+                    artIndex = 0;
+                }
+                artElement.src = artPhotos[artIndex];
+                
+                // Fade the new picture back in! (opacity: 1)
+                artElement.style.opacity = 1;
+            }, 500); 
+            
+        }, 3500); // 3500 means 3.5 seconds
+
     </script>
 </body>
 </html>
