@@ -51,6 +51,7 @@
         img {
             max-width: 100%;
             height: auto;
+            min-width: 0; /* Ensures the picture shrinks safely on small phone screens */
             border-radius: 15px;
             border: 8px solid white;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
@@ -100,6 +101,32 @@
             margin-top: 25px;
             margin-bottom: 0;
             letter-spacing: 1px;
+        }
+
+        /* --- NEW: Making it look great on phones and tablets --- */
+        @media (max-width: 600px) {
+            .card {
+                padding: 25px 15px; /* Use less white space on small screens */
+                width: 90%;
+            }
+            h1 {
+                font-size: 2.2em; /* Slightly smaller name */
+            }
+            h2 {
+                font-size: 1.5em; /* Slightly smaller phrase */
+            }
+            .photo-container {
+                gap: 8px; /* Bring the buttons closer so the picture can be bigger */
+            }
+            /* Make the flowers smaller so they don't crowd the screen on phones */
+            .f1 { font-size: 30px; }
+            .f2 { font-size: 35px; }
+            .f3 { font-size: 25px; }
+            .f4 { font-size: 30px; }
+            .f5 { font-size: 20px; }
+            .f6 { font-size: 25px; }
+            .f7 { font-size: 20px; }
+            .f8 { font-size: 20px; }
         }
 
         /* --- Animations for the background flowers --- */
