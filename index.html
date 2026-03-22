@@ -64,6 +64,35 @@
             transform: rotate(0deg) scale(1.02);
         }
 
+        /* --- NEW: Styling for the photo swiper container and buttons --- */
+        .photo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .nav-btn {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.2s, background-color 0.2s;
+            /* This keeps the buttons from shrinking */
+            flex-shrink: 0; 
+        }
+        
+        .nav-btn:hover {
+            background-color: #d81b60;
+            transform: scale(1.1);
+        }
+
         /* Styling for the phrase below the picture */
         h2 {
             color: #ff4081; /* Bright pink */
@@ -116,11 +145,47 @@
     <div class="card">
         <h1>Lydia Scout Corwin</h1>
         
-        <!-- The image source matches the exact name of the file you uploaded -->
-        <img src="IMG_9529.jpg" alt="Lydia Scout Corwin ready for adventure!">
+        <!-- NEW: The photo container with buttons! -->
+        <div class="photo-container">
+            <button class="nav-btn" onclick="prevPhoto()">&#10094;</button>
+            <img id="myPhoto" src="IMG_9529.jpg" alt="Lydia Scout Corwin ready for adventure!">
+            <button class="nav-btn" onclick="nextPhoto()">&#10095;</button>
+        </div>
         
         <h2>Full of Adventure!</h2>
     </div>
 
+    <!-- NEW: JavaScript to make the buttons work! -->
+    <script>
+        // This is a "List" (an Array) of your pictures.
+        // Right now, it has your first picture and two placeholders I made.
+        // You can replace the placeholder text with your real picture names!
+        const myPhotos = [
+            "IMG_9529.jpg",
+            "https://placehold.co/400x500/ff99cc/ffffff?text=Picture+2",
+            "https://placehold.co/400x500/ff99cc/ffffff?text=Picture+3"
+        ];
+        
+        let photoIndex = 0; // Computers start counting at 0!
+        const photoElement = document.getElementById("myPhoto");
+
+        function nextPhoto() {
+            photoIndex = photoIndex + 1;
+            // If we click past the last photo, loop back to the start
+            if (photoIndex >= myPhotos.length) {
+                photoIndex = 0; 
+            }
+            photoElement.src = myPhotos[photoIndex];
+        }
+
+        function prevPhoto() {
+            photoIndex = photoIndex - 1;
+            // If we go backwards past the first photo, go to the very last one
+            if (photoIndex < 0) {
+                photoIndex = myPhotos.length - 1; 
+            }
+            photoElement.src = myPhotos[photoIndex];
+        }
+    </script>
 </body>
 </html>
