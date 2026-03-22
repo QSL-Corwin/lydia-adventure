@@ -161,6 +161,43 @@
         .f6 { top: 50%; right: 4%; font-size: 40px; animation-delay: 2.5s; }
         .f7 { top: 5%; left: 50%; font-size: 30px; animation-delay: 0.8s; }
         .f8 { bottom: 5%; right: 50%; font-size: 30px; animation-delay: 1.8s; }
+
+        /* --- NEW: Styling for the tabs --- */
+        .tab-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            z-index: 10;
+        }
+        
+        .tab-btn {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #ff4081;
+            border: 3px solid #ff4081;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .tab-btn.active {
+            background-color: #ff4081;
+            color: white;
+        }
+        
+        /* This class hides the card that isn't selected */
+        .hidden {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -175,8 +212,14 @@
     <div class="flower f7">🌺</div>
     <div class="flower f8">🌼</div>
 
+    <!-- NEW: The Tab Buttons -->
+    <div class="tab-container">
+        <button id="btnAdventure" class="tab-btn active" onclick="showTab('adventure')">📸 My Adventures</button>
+        <button id="btnArt" class="tab-btn" onclick="showTab('art')">🎨 My Artwork</button>
+    </div>
+
     <!-- The Main Content Card -->
-    <div class="card">
+    <div id="cardAdventure" class="card">
         <h1>Lydia Scout Corwin</h1>
         
         <!-- NEW: The photo container with buttons! -->
@@ -190,7 +233,7 @@
     </div>
 
     <!-- NEW: The Artwork Card -->
-    <div class="card">
+    <div id="cardArt" class="card hidden">
         <h1>My Artwork 🎨</h1>
         
         <!-- We use the same photo-container to keep the spacing neat -->
@@ -203,6 +246,26 @@
 
     <!-- NEW: JavaScript to make the buttons work! -->
     <script>
+        // --- NEW: Tab Switching Logic ---
+        function showTab(tabName) {
+            const advCard = document.getElementById('cardAdventure');
+            const artCard = document.getElementById('cardArt');
+            const btnAdv = document.getElementById('btnAdventure');
+            const btnArt = document.getElementById('btnArt');
+
+            if (tabName === 'adventure') {
+                advCard.classList.remove('hidden');
+                artCard.classList.add('hidden');
+                btnAdv.classList.add('active');
+                btnArt.classList.remove('active');
+            } else if (tabName === 'art') {
+                artCard.classList.remove('hidden');
+                advCard.classList.add('hidden');
+                btnArt.classList.add('active');
+                btnAdv.classList.remove('active');
+            }
+        }
+
         // This is a "List" (an Array) of your pictures.
         // Right now, it has your first picture and two placeholders I made.
         // You can replace the placeholder text with your real picture names!
